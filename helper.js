@@ -1,6 +1,6 @@
 var fs = require('fs');
 var path = require('path');
-var process = require('child_process')
+var child_process = require('child_process')
 var _ = require('lodash');
 var kiwiconsole = require('./kiwiconsole');
 
@@ -72,9 +72,9 @@ exports.executeBuild = function (env, watch) {
     try {
         const command = `tsc --project ./tsconfig.temp.json --outDir ${outDir}`;
         if (watch) {
-          process.spawnSync('sh', ['-c', `${command} --watch`], { stdio: 'inherit' });
+          child_process.spawnSync('sh', ['-c', `${command} --watch`], { stdio: 'inherit' });
         } else {
-          process.execSync(command);
+          child_process.execSync(command);
           if (env !== 'default') {
               renameFile(`${outDir}/environments/environment.${env}.js`, `${outDir}/environments/environment.js`);
           }
