@@ -84,7 +84,7 @@ exports.executeBuild = function (env, watch) {
     }
     catch (error) {
         kiwiconsole.error(error.stdout.toString());
-        return false;
+        process.exit(1);
     }
 }
 
